@@ -15,7 +15,7 @@ env:
     global:
         - QEMU_VER=v3.1.0-3
         - DOCKER_SERVER=docker.io
-        - DOCKER_REPO=$DOCKER_SERVER/multiarch/centos
+        - DOCKER_REPO=$DOCKER_SERVER/sugarfillet/mcentos
         # Enable below environment variables for debug when virt-tar-out shows error.
         # - LIBGUESTFS_DEBUG=1
         # - LIBGUESTFS_TRACE=1
@@ -26,9 +26,10 @@ env:
         # others: http://mirror.centos.org/altarch/$VERSION/isos/$ARCH
         # Comment out cases that have issue.
         - VERSION=7.6.1811-x86_64
-        - VERSION=7.6.1901-x86_64
-        # - VERSION=7.6.1810-aarch64
-        - VERSION=7.6.1810-armhfp
+        # - VERSION=7.6.1901-x86_64
+        - VERSION=7.7.1908-aarch64
+        #- VERSION=7.6.1810-aarch64
+        # - VERSION=7.6.1810-armhfp
         # - VERSION=7.6.1810-i386
         # - VERSION=7.6.1810-ppc64
         # - VERSION=7.6.1810-ppc64le
@@ -43,6 +44,7 @@ script:
 after_success:
     - |
       if [[ "${TRAVIS_BRANCH}" == 'master' && "${TRAVIS_PULL_REQUEST}" == 'false' ]]; then
-          echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin "${DOCKER_SERVER}" && \
+          echo "sss521521"| docker login --username "sugarfillet" --password-stdin "${DOCKER_SERVER}" && \
+          #echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin "${DOCKER_SERVER}" && \
               docker push "${DOCKER_REPO}"
       fi
