@@ -152,7 +152,7 @@ EOF
         docker tag ${DOCKER_REPO}:$version-iso ${DOCKER_REPO}:$tag-iso
     done
 
-    docker run -it --rm ${DOCKER_REPO}:$version-iso bash -xc '
+    docker run -it --rm ${DOCKER_REPO}:$version-iso /usr/bin/bash -xc '
         uname -a
         echo
         cat /etc/os-release 2>/dev/null
@@ -186,7 +186,7 @@ EOF
     for tag in $tags; do
         docker tag ${DOCKER_REPO}:$version-clean ${DOCKER_REPO}:$tag-clean
     done
-    docker run -it --rm ${DOCKER_REPO}:$version-clean bash -xc '
+    docker run -it --rm ${DOCKER_REPO}:$version-clean /usr/bin/bash -xc '
         uname -a
         echo
         cat /etc/os-release 2>/dev/null
